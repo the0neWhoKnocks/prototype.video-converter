@@ -1,0 +1,314 @@
+*, :before, :after {
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font: 16px Helvetica, Arial, sans-serif;
+}
+
+button {
+  font-size: inherit;
+}
+
+.base-input {
+  font-weight: bold;
+  padding: 0.25em 0.5em;
+  border: solid 2px #888;
+  border-radius: 0.5em;
+  background: #eee;
+  transition: opacity 0.25s;
+  cursor: pointer;
+}
+.base-input:disabled {
+  opacity: 0.25;
+  cursor: default;
+}
+
+.root {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+
+.converter__form {
+  height: 360px;
+  padding-top: 2em;
+}
+
+.file-drop-zone {
+  width: 75%;
+  min-width: 360px;
+  height: 100%;
+  border: dashed 2px #888;
+  border-radius: 1em;
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  transform: translateZ(0);
+}
+.file-drop-zone:after {
+  content: attr(data-dz-text);
+  font-weight: bold;
+  color: #888;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.file-drop-zone.drop-it-like-its-hot {
+  border-color: #37DBF3;
+  background-color: #F5FEFF;
+}
+.file-drop-zone.has--file {
+  background: #000;
+}
+.file-drop-zone.has--file:after {
+  color: #fff;
+  text-align: left;
+  white-space: pre;
+  padding: 0.5em 1em;
+  border: solid 1px;
+  border-radius: 0.5em;
+  background: #333;
+}
+
+.file-drop-zone video {
+  position: absolute;
+  transition: all 0.25s;
+}
+
+.converter__ui {
+  position: absolute;
+  bottom: 0.5em;
+  left: 0.5em;
+  right: 0.5em;
+}
+
+.converter__ui-wrapper {
+  display: inline-block;
+  position: relative;
+}
+
+.converter__inputs {
+  transition: opacity 0.25s;
+}
+
+.converter__progress-bar-container {
+  width: 100%;
+  padding: 0.5em;
+  border-radius: 0.25em;
+  background: #fefefe;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  box-shadow: 0 3px 7px 1px rgba(0,0,0,0.25);
+}
+
+.converter__progress-bar {
+  width: 100%;
+}
+.converter__progress-bar,
+.converter__progress-bar::-webkit-progress-bar {
+  height: 18px;
+  border-radius: 0.25em;
+  background-color: #f3f3f3;
+}
+.converter__progress-bar::-webkit-progress-bar {
+  border: solid 1px #C5C5C5;
+}
+.converter__progress-bar::-webkit-progress-value {
+  background: #63D288;
+  transition: width 0.25s;
+}
+
+.converter__progress-log {
+  height: 100%;
+  padding: 0.25em 0.5em;
+  background: #222;
+  position: relative;
+  z-index: 10;
+}
+.converter__progress-log__content {
+  height: 100%;
+  font-size: 0.75em;
+  font-family: monospace;
+  color: #555;
+  white-space: pre;
+  text-align: left;
+  margin-right: -4em;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.converter__progress-timer,
+.converter__progress-item__label {
+  margin-bottom: 0.5em;
+}
+.converter__progress-timer:before {
+  content: 'Converting ' attr(data-file-count) ' | ' attr(data-elapsed-time);
+  white-space: nowrap;
+}
+
+.converter__progress-item {
+  text-align: center;
+  border: solid 2px #888;
+  border-radius: 0.5em;
+  padding: 1em;
+  background: #fff;
+  display: inline-block;
+  position: absolute;
+  bottom: 50%;
+  left: 50%;
+  transform: translate(-50%, 50%);
+  z-index: 10;
+}
+.converter__progress-item__label {
+  font-family: monospace;
+  font-weight: bold;
+}
+.converter__progress-item__conversion-progress {
+  width: 100%;
+  height: 5px;
+  border: solid 1px #B0B0B0;
+  border-radius: 0.5em;
+  overflow: hidden;
+  display: block;
+  appearance: none;
+  -webkit-appearance: none;
+}
+.converter__progress-item__conversion-progress[value],
+.converter__progress-item__conversion-progress::-webkit-progress-bar {
+  background-color: #eee;
+}
+.converter__progress-item__conversion-progress::-webkit-progress-value {
+  border-radius: 0em 0.4em 0.4em 0em;
+  background-image: linear-gradient(#00FF14, #00BD17);
+  transition: width .25s;
+}
+
+.screen-grab__container {
+  padding-top: 2em;
+}
+.screen-grab__video-wrapper {
+  display: inline-block;
+  position: relative;
+}
+.screen-grab__ui {
+  position: absolute;
+  top: 0.25em;
+  right: 0.25em;
+}
+.screen-grab__ui button {
+  margin-bottom: 0.25em;
+  display: block;
+}
+.screen-grab__scrubber {
+  text-align: right;
+  padding: 0.25em 0.5em;
+  border-radius: 0.3em;
+  background-color: rgba(0,0,0,0.5);
+  position: absolute;
+  bottom: 1em;
+  left: 0.5em;
+  right: 0.5em;
+}
+.screen-grab__range-wrapper {
+  position: absolute;
+  left: 0.5em;
+  right: 200px;
+}
+.screen-grab__scrubber [type="range"] {
+  width: 100%;
+}
+.screen-grab__scrubber-time {
+  color: #fff;
+  font-family: monospace;
+  font-size: .9em;
+  line-height: 1.4em;
+  padding: 0.25em 0.5em;
+  border-radius: 0.25em;
+  background: #000;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.video-player {
+  position: relative;
+}
+.video-player video {
+  display: block;
+}
+.video-player__poster-btn {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.video-player__poster-btn img {
+  /* ensures the CTA will be centered while the image loads */
+  width: 100%;
+  height: 100%;
+  background: #000;
+  display: block;
+  pointer-events: none;
+}
+.video-player__poster-cta {
+  color: #ccc;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 0.5em 0.75em;
+  border: solid 1px #AAA;
+  border-radius: 0.25em;
+  background: #222;
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  opacity: 0.5;
+  transition: opacity 0.25s;
+}
+.video-player__play-icon {
+  height: 1em;
+  vertical-align: top;
+  margin-left: 0.5em;
+}
+.video-player__play-icon__body {
+  fill: #636363;
+  transition: fill 0.25s;
+}
+.video-player__play-icon__arrow {
+  fill: #222;
+  transition: fill 0.25s;
+}
+.video-player__poster-btn:hover .video-player__poster-cta {
+  opacity: 1;
+}
+.video-player__poster-btn:hover .video-player__play-icon__body {
+  fill: #D82E00;
+}
+.video-player__poster-btn:hover .video-player__play-icon__arrow {
+  fill: #FFF;
+}
+
+.is--invisible {
+  pointer-events: none;
+  opacity: 0;
+}
+
+.is--hidden {
+  display: none;
+}
